@@ -1,0 +1,26 @@
+{
+  "name": "string-generator",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "string-generator",
+    "productName": "Генератор строки",
+    "win": {
+      "target": "nsis",
+      "icon": "./src/icon.png"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.3",
+    "electron": "^31.2.0"
+  }
+}
