@@ -43,8 +43,13 @@
   
       <div class="form-group">
         <button type="submit" id="generate-button">Сгенерировать</button>
-        <button type="button" id="copy-button" disabled><i class="fas fa-copy"></i></button>
-        <button type="button" id="reload-button"><i class="fas fa-sync-alt"></i></button>
+        <button type="button" id="copy-button" disabled>
+          <i id="copy-icon" class="fas fa-copy"></i>
+          <i id="check-icon" class="fas fa-check" style="display: none;"></i>
+        </button>
+        <button class="tooltip" type="button" id="reload-button">
+          <i class="fas fa-sync-alt"></i>
+        </button>
       </div>
     </form>
     <div class="form-group" id="result"></div>

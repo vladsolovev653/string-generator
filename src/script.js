@@ -22,8 +22,12 @@ const result = document.getElementById('result');
 
 // Вспомогательные кнопки
 const copyBtn = document.getElementById('copy-button');
+const copyIcon = document.getElementById('copy-icon');
+const checkIcon = document.getElementById('check-icon');
 const refreshBtn = document.getElementById('reload-button');
 
+
+// Слушатели
 
 // Cлушатель нажатия кнопки "Выбрать все"
 selectAll.addEventListener('click', () => {
@@ -48,28 +52,25 @@ selectAll.addEventListener('click', () => {
   }
 });
 
-
 // Слушатель нажатия кнопки "Сгенерировать"
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  let resultStr = '';
-  const lengthNumber = Number(strLength.value);
-
+  // Обработка выбранных символов
   let chars = '';
 
   if (cyrillic.checked) chars += CHARS['cyrrilic'];
-
   if (latin.checked) chars += CHARS['latin'];
-
   if (special.checked) chars += CHARS['special'];
-  
   if (numbers.checked) chars += CHARS['numbers'];
 
   if (!chars) {
     copyBtn.disabled = true;
     return result.innerText = 'Не выбраны символы';
   }
+
+  // Обработка длины строки
+  const lengthNumber = Number(strLength.value);
 
   if (lengthNumber < MIN_STR_LENGTH) {
     copyBtn.disabled = true;
@@ -81,22 +82,27 @@ form.addEventListener('submit', (event) => {
     return result.innerText = `Максимальная длина строки: ${MAX_STR_LENGTH}`;
   } 
 
+  // Генерация строки
+  let resultStr = '';
+
   for (let i = 0; i < lengthNumber; i++) {
     const randomIndex = Math.floor(Math.random() * chars.length);
     resultStr += chars[randomIndex];
   }
 
+  checkIcon.style.display = 'none';
+  copyIcon.style.display = 'inline';
   copyBtn.disabled = false;
+  
   return result.textContent = resultStr;
 });
-
 
 // Слушатель нажатия кнопки "Скопировать"
 copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(result.innerText);
-  copyBtn.disabled = true;
+  copyIcon.style.display = 'none';
+  checkIcon.style.display = 'inline';
 });
-
 
 // Слушатель нажатия кнопки "Сброс"
 refreshBtn.addEventListener('click', () => {

@@ -13,6 +13,10 @@ p {
   margin-bottom: 8px;
 }
 
+#length {
+  color: #333;
+}
+
 #string-length {
   border-radius: 8px;
   border-width: 2px;
@@ -23,12 +27,9 @@ p {
   font-size: 15px;
 }
 
-#length {
-  color: #333;
-}
-
 button {
   font-family: "Roboto", sans-serif;
+  margin-right: 1px;
   border-style: solid;
   border-width: 2px;
   border-color: rgb(155, 150, 150);
@@ -40,10 +41,20 @@ button:hover {
   background-color: rgba(155, 150, 150, 0.247);
 }
 
+button:active {
+  background-color: rgba(155, 150, 150, 0.452);
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: initial;
+  cursor: not-allowed;
+}
+
 #generate-button {
   background-color: rgba(0, 89, 255, 0.8);
   border-width: 2px;
-  border-color: rgba(0, 89, 255, 0.7);
+  border-color: rgba(0, 89, 255, 0.637);
   color: rgb(255, 255, 255);
 }
 
@@ -51,7 +62,12 @@ button:hover {
   background-color: rgba(0, 89, 255, 0.842);
 }
 
+#generate-button:active {
+  background-color: rgba(0, 89, 255, 0.945);
+}
+
 #result {
+  margin-top: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
