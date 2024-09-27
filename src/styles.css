@@ -9,6 +9,10 @@ p {
   margin-bottom: 4px;
 }
 
+.required {
+  color: rgba(219, 26, 26, 0.829);
+}
+
 .form-group {
   margin-bottom: 8px;
 }
