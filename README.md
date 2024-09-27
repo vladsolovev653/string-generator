@@ -1,6 +1,5 @@
 # Генератор строки
-Нужен для проверки полей
 
-![](src/app.png)
+Нужен для проверки текстовых полей (граничные значения, разные типы символов).
 
-[Скачать установочный файл](https://github.com/vladsolovev653/string-generator/releases)
+[Ссылка на релизы](https://github.com/vladsolovev653/string-generator/releases)
