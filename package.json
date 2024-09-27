@@ -11,7 +11,7 @@
     "productName": "Генератор строки",
     "win": {
       "target": "nsis",
-      "icon": "./src/icon.png"
+      "icon": "./src/icon.ico"
     }
   },
   "author": "",
