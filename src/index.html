@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
   </head>
   <body>
     <form id="generate-form">
-      <div class="form-group">
+      <div class="container">
         <div style="margin-bottom: 2px;">
           <span><b>Выберите символы</b></span>
           <span class="required">*</span>
@@ -38,15 +38,15 @@
           <label for="special">Спецсимволы</label>
         </div>
       </div>
-  
-      <div class="form-group">
+
+      <div class="container">
           <span><b>Укажите длину строки</b></span>
           <span class="required">*</span>
-          <input type="number" id="string-length">
+          <input type="number" id="string-length" title="Введите число от 10 до 5000" min="10" max="5000">
       </div>
   
-      <div class="form-group">
-        <button type="submit" id="generate-button">Сгенерировать</button>
+      <div class="container">
+        <button type="submit" id="generate-button" disabled>Сгенерировать</button>
         <button type="button" id="copy-button" disabled>
           <i id="copy-icon" class="fas fa-copy"></i>
           <i id="check-icon" class="fas fa-check" style="display: none;"></i>
@@ -58,6 +58,6 @@
     </form>
     
     <div class="form-group" id="result"></div>
-    <script src="./script.js" type="text/javascript"></script>
+    <script type="module" src="./main.js" type="text/javascript"></script>
   </body>
 </html>

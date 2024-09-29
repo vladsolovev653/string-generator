@@ -6,12 +6,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.required {
-  color: rgba(219, 26, 26, 0.829);
+.container {
+  margin-bottom: 8px;
 }
 
-.form-group {
-  margin-bottom: 8px;
+.required {
+  color: rgba(219, 26, 26, 0.829);
 }
 
 label {
@@ -27,6 +27,11 @@ label {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #333;
+  outline-color: rgb(155, 150, 150);
+}
+
+#string-length:invalid {
+  outline-color: rgb(249, 8, 8);
 }
 
 button {
@@ -66,6 +71,11 @@ button:disabled:hover {
 
 #generate-button:active {
   background-color: rgba(0, 89, 255, 0.945);
+}
+
+#generate-button:disabled {
+  border-color: rgb(155, 150, 150);
+  background-color:rgb(155, 150, 150);
 }
 
 #result {
