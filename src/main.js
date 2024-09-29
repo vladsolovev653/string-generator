@@ -6,57 +6,80 @@ const CHARS = {
   'latin': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
   'numbers': '1234567890',
   'special': '!@#$%^&*()_+-=[]{};:",.<>?/\\|`~'
-}
+};
 
-// Форма с данными для генерации
+
+// Элементы страницы
 const form = document.getElementById('generate-form');
+const selectAll = document.getElementById('select-all');
 const cyrillic = document.getElementById('cyrillic');
 const latin = document.getElementById('latin');
 const numbers = document.getElementById('numbers');
 const special = document.getElementById('special');
 const strLength = document.getElementById('string-length');
-const selectAll = document.getElementById('select-all');
-
-// Блок с результатом
+const generateBtn = document.getElementById('generate-button');
 const result = document.getElementById('result');
-
-// Вспомогательные кнопки
 const copyBtn = document.getElementById('copy-button');
 const copyIcon = document.getElementById('copy-icon');
 const checkIcon = document.getElementById('check-icon');
 const refreshBtn = document.getElementById('reload-button');
 
+// Данные пользователя
+const userData = {};
+
 
 // Слушатели
 
 // Cлушатель нажатия кнопки "Выбрать все"
-selectAll.addEventListener('click', () => {
+selectAll.addEventListener('click', () => {  
   cyrillic.checked = false;
   cyrillic.disabled = false;
   latin.checked = false;
   latin.disabled = false;
-  special.checked = false;
-  special.disabled = false;
   numbers.checked = false;
   numbers.disabled = false;
+  special.checked = false;
+  special.disabled = false;
 
   if (selectAll.checked) {
     cyrillic.checked = true;
     cyrillic.disabled = true;
     latin.checked = true;
     latin.disabled = true;
-    special.checked = true;
-    special.disabled = true;
     numbers.checked = true;
     numbers.disabled = true;
+    special.checked = true;
+    special.disabled = true;
   }
 });
 
-// Слушатель нажатия кнопки "Сгенерировать"
-form.addEventListener('submit', (event) => {
+
+// Слушатель поля с длиной строки
+strLength.addEventListener('input', () => {
+  userData.strLength = Number(strLength.value);
+
+  if (userData.strLength < MIN_STR_LENGTH || userData.strLength > MAX_STR_LENGTH) {
+    userData.strLength = false;
+  }
+});
+
+
+// Слушатель изменений в форме
+form.addEventListener('input', () => {
+  generateBtn.disabled = true;
+
+  userData.hasChars = cyrillic.checked || latin.checked || numbers.checked || special.checked;
+
+    if (userData.hasChars && userData.strLength) {
+      generateBtn.disabled = false;
+  }
+});
+
+
+// Слушатель кнопки "Сгенерировать"
+generateBtn.addEventListener('click', (event) => {
   event.preventDefault();
 
-  // Обработка выбранных символов
   let chars = '';
 
   if (cyrillic.checked) chars += CHARS['cyrrilic'];
@@ -64,28 +87,10 @@ form.addEventListener('submit', (event) => {
   if (special.checked) chars += CHARS['special'];
   if (numbers.checked) chars += CHARS['numbers'];
 
-  if (!chars) {
-    copyBtn.disabled = true;
-    return result.innerText = 'Не выбраны символы';
-  }
-
-  // Обработка длины строки
-  const lengthNumber = Number(strLength.value);
-
-  if (lengthNumber < MIN_STR_LENGTH) {
-    copyBtn.disabled = true;
-    return result.innerText = `Минимальная длина строки: ${MIN_STR_LENGTH}`;
-  }
-
-  if (lengthNumber > MAX_STR_LENGTH) {
-    copyBtn.disabled = true;
-    return result.innerText = `Максимальная длина строки: ${MAX_STR_LENGTH}`;
-  } 
-
   // Генерация строки
   let resultStr = '';
 
-  for (let i = 0; i < lengthNumber; i++) {
+  for (let i = 0; i < userData.strLength; i++) {
     const randomIndex = Math.floor(Math.random() * chars.length);
     resultStr += chars[randomIndex];
   }
@@ -93,9 +98,10 @@ form.addEventListener('submit', (event) => {
   checkIcon.style.display = 'none';
   copyIcon.style.display = 'inline';
   copyBtn.disabled = false;
-  
+
   return result.textContent = resultStr;
 });
+
 
 // Слушатель нажатия кнопки "Скопировать"
 copyBtn.addEventListener('click', () => {
@@ -103,6 +109,7 @@ copyBtn.addEventListener('click', () => {
   copyIcon.style.display = 'none';
   checkIcon.style.display = 'inline';
 });
+
 
 // Слушатель нажатия кнопки "Сброс"
 refreshBtn.addEventListener('click', () => {
