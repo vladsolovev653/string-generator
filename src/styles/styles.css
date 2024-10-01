@@ -19,7 +19,9 @@ label {
 }
 
 #str-length {
-  border-radius: 8px;
+  padding-top: 2px;
+  padding-left: 4px;
+  border-radius: 7px;
   border-width: 2px;
   border-style: solid;
   border-color: rgb(155, 150, 150);
@@ -28,6 +30,11 @@ label {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #333;
+}
+
+#str-length:hover {
+  border-color: rgb(117, 111, 111);
+  outline: rgb(117, 111, 111);
 }
 
 #str-length.invalid {
@@ -56,7 +63,7 @@ button {
   border-style: solid;
   border-width: 2px;
   border-color: rgb(155, 150, 150);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 7px;
 }
 
@@ -75,6 +82,7 @@ button:disabled:hover {
 }
 
 #generate-button {
+  border-radius: 7px;
   background-color: rgba(0, 89, 255, 0.8);
   border-width: 2px;
   border-color: rgba(0, 89, 255, 0.308);
