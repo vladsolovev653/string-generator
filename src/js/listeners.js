@@ -73,6 +73,11 @@ form.addEventListener('input', () => {
 generateBtn.addEventListener('click', (event) => {
   event.preventDefault();
 
+  if (!userData.hasChar || !userData.strLength) {
+    alert('Что-то пошло не так');
+    location.reload();
+  }
+
   let chars = '';
 
   if (cyrillic.checked) chars += CHARS['cyrrilic'];
