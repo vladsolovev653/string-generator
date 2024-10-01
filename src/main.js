@@ -10,19 +10,33 @@ const CHARS = {
 
 
 // Элементы страницы
+
+// Форма
 const form = document.getElementById('generate-form');
+
+// Чекбоксы
 const selectAll = document.getElementById('select-all');
 const cyrillic = document.getElementById('cyrillic');
 const latin = document.getElementById('latin');
 const numbers = document.getElementById('numbers');
 const special = document.getElementById('special');
-const strLength = document.getElementById('string-length');
+
+// Длина строки
+const strLength = document.getElementById('str-length');
+const strLengthError = document.getElementById('str-length-error');
+
+// Кнопка "Сгенерировать"
 const generateBtn = document.getElementById('generate-button');
+
+// Результат
 const result = document.getElementById('result');
+
+// Вспомогательные кнопки
 const copyBtn = document.getElementById('copy-button');
 const copyIcon = document.getElementById('copy-icon');
 const checkIcon = document.getElementById('check-icon');
 const refreshBtn = document.getElementById('reload-button');
+
 
 // Данные пользователя
 const userData = {};
@@ -54,24 +68,44 @@ selectAll.addEventListener('click', () => {
 });
 
 
-// Слушатель поля с длиной строки
-strLength.addEventListener('input', () => {
-  userData.strLength = Number(strLength.value);
+// Слушатель изменений поля длины строки
+strLength.addEventListener('input', (event) => {
+  strLength.classList.add('invalid');
+  userData.hasValidLength = false;
 
-  if (userData.strLength < MIN_STR_LENGTH || userData.strLength > MAX_STR_LENGTH) {
-    userData.strLength = false;
+  const value = Number(event.target.value);
+  let isValid;
+
+  if (!value) {
+    strLengthError.textContent = 'Значение от 10 до 5000';
+    isValid = false;
+  } else if (value < MIN_STR_LENGTH) {
+    strLengthError.textContent = `Минимальное значение: ${MIN_STR_LENGTH}`;
+    isValid = false;
+  } else if (value > MAX_STR_LENGTH) {
+    strLengthError.textContent = `Максимальное значение: ${MAX_STR_LENGTH}`;
+    isValid = false;
+  } else {
+    strLengthError.textContent = '';
+    isValid = true;
+  }
+
+  if (isValid) {
+    strLength.classList.remove('invalid');
+    userData.hasValidLength = true;
+    userData.strLength = value;
   }
 });
 
 
-// Слушатель изменений в форме
+// Слушатель изменений всей формы
 form.addEventListener('input', () => {
   generateBtn.disabled = true;
 
   userData.hasChars = cyrillic.checked || latin.checked || numbers.checked || special.checked;
 
-    if (userData.hasChars && userData.strLength) {
-      generateBtn.disabled = false;
+  if (userData.hasChars && userData.hasValidLength) {
+    generateBtn.disabled = false;
   }
 });
 

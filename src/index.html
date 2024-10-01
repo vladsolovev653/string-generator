@@ -40,9 +40,10 @@
       </div>
 
       <div class="container">
-          <span><b>Укажите длину строки</b></span>
+          <label for="str-length"><b>Укажите длину строки</b></label>
           <span class="required">*</span>
-          <input type="number" id="string-length" title="Введите число от 10 до 5000" min="10" max="5000">
+          <input type="number" class="invalid" id="str-length">
+          <span id="str-length-error">Значение от 10 до 5000</span>
       </div>
   
       <div class="container">

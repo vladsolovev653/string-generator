@@ -18,21 +18,30 @@ label {
   font-size: 14px;
 }
 
-#string-length {
+#str-length {
   border-radius: 8px;
   border-width: 2px;
   border-style: solid;
   border-color: rgb(155, 150, 150);
+  outline-color: rgb(155, 150, 150);
   width: 80px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #333;
-  outline-color: rgb(155, 150, 150);
 }
 
-#string-length:invalid {
-  border-color: rgb(249, 8, 8);
-  outline-color: rgb(249, 8, 8);
+#str-length.invalid {
+  border-style: solid;
+  background-color: rgb(252, 243, 243);
+  border-color: rgb(255, 100, 100);
+  outline-color: rgb(255, 100, 100);
+}
+
+#str-length-error {
+  margin-left: 3px;
+  color: rgba(219, 26, 26, 0.829);
+  font-size: 12px;
+  font-style: italic;
 }
 
 button {
@@ -62,7 +71,7 @@ button:disabled:hover {
 #generate-button {
   background-color: rgba(0, 89, 255, 0.8);
   border-width: 2px;
-  border-color: rgba(0, 89, 255, 0.637);
+  border-color: rgba(0, 89, 255, 0.308);
   color: rgb(255, 255, 255);
 }
 
