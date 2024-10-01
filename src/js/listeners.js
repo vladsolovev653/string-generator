@@ -75,7 +75,7 @@ generateBtn.addEventListener('click', (event) => {
 
   if (!userData.hasChar || !userData.strLength) {
     alert('Что-то пошло не так');
-    location.reload();
+    return;
   }
 
   let chars = '';
