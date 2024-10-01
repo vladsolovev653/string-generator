@@ -44,6 +44,12 @@ label {
   font-style: italic;
 }
 
+#str-length-empty {
+  margin-left: 3px;
+  font-size: 12px;
+  font-style: italic;
+}
+
 button {
   font-family: "Roboto", sans-serif;
   margin-right: 1px;

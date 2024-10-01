@@ -1,47 +1,3 @@
-// Константы
-const MIN_STR_LENGTH = 10;
-const MAX_STR_LENGTH = 5000;
-const CHARS = { 
-  'cyrrilic': 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя', 
-  'latin': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
-  'numbers': '1234567890',
-  'special': '!@#$%^&*()_+-=[]{};:",.<>?/\\|`~'
-};
-
-
-// Элементы страницы
-
-// Форма
-const form = document.getElementById('generate-form');
-
-// Чекбоксы
-const selectAll = document.getElementById('select-all');
-const cyrillic = document.getElementById('cyrillic');
-const latin = document.getElementById('latin');
-const numbers = document.getElementById('numbers');
-const special = document.getElementById('special');
-
-// Длина строки
-const strLength = document.getElementById('str-length');
-const strLengthError = document.getElementById('str-length-error');
-
-// Кнопка "Сгенерировать"
-const generateBtn = document.getElementById('generate-button');
-
-// Результат
-const result = document.getElementById('result');
-
-// Вспомогательные кнопки
-const copyBtn = document.getElementById('copy-button');
-const copyIcon = document.getElementById('copy-icon');
-const checkIcon = document.getElementById('check-icon');
-const refreshBtn = document.getElementById('reload-button');
-
-
-// Данные пользователя
-const userData = {};
-
-
 // Слушатели
 
 // Cлушатель нажатия кнопки "Выбрать все"
@@ -70,31 +26,34 @@ selectAll.addEventListener('click', () => {
 
 // Слушатель изменений поля длины строки
 strLength.addEventListener('input', (event) => {
-  strLength.classList.add('invalid');
-  userData.hasValidLength = false;
+  let isValid = false;
 
   const value = Number(event.target.value);
-  let isValid;
 
   if (!value) {
-    strLengthError.textContent = 'Значение от 10 до 5000';
-    isValid = false;
+    strLengthEmpty.style.display = 'inline';
+    strLengthError.style.display = 'none';
+    strLength.classList.remove('invalid');
+    strLengthEmpty.textContent = `Значение от ${MIN_STR_LENGTH} до ${MAX_STR_LENGTH}`;
   } else if (value < MIN_STR_LENGTH) {
+    strLengthEmpty.style.display = 'none';
+    strLengthError.style.display = 'inline';
+    strLength.classList.add('invalid');
     strLengthError.textContent = `Минимальное значение: ${MIN_STR_LENGTH}`;
-    isValid = false;
   } else if (value > MAX_STR_LENGTH) {
+    strLengthEmpty.style.display = 'none';
+    strLengthError.style.display = 'inline';
+    strLength.classList.add('invalid');
     strLengthError.textContent = `Максимальное значение: ${MAX_STR_LENGTH}`;
-    isValid = false;
   } else {
-    strLengthError.textContent = '';
     isValid = true;
+    strLengthEmpty.style.display = 'none';
+    strLengthError.style.display = 'none';
+    strLength.classList.remove('invalid');
   }
 
-  if (isValid) {
-    strLength.classList.remove('invalid');
-    userData.hasValidLength = true;
-    userData.strLength = value;
-  }
+  userData.hasValidLength = isValid;
+  userData.strLength = value;
 });
 
 
