@@ -28,6 +28,9 @@ const copyIcon = document.getElementById('copy-icon');
 const checkIcon = document.getElementById('check-icon');
 const refreshBtn = document.getElementById('reload-button');
 
-
 // Данные пользователя
-const userData = {};
+const userData = {
+  hasChar: false,
+  hasValidLength: false,
+  strLength: 0
+};

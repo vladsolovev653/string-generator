@@ -61,9 +61,9 @@ strLength.addEventListener('input', (event) => {
 form.addEventListener('input', () => {
   generateBtn.disabled = true;
 
-  userData.hasChars = cyrillic.checked || latin.checked || numbers.checked || special.checked;
+  userData.hasChar = cyrillic.checked || latin.checked || numbers.checked || special.checked;
 
-  if (userData.hasChars && userData.hasValidLength) {
+  if (userData.hasChar && userData.hasValidLength) {
     generateBtn.disabled = false;
   }
 });
