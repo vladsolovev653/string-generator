@@ -57,9 +57,9 @@ strLength.addEventListener('input', (event) => {
     strLength.classList.remove('invalid');
   }
 
-  if (isValid) {
-    userData.hasValidLength = isValid;
+  userData.hasValidLength = isValid;
 
+  if (userData.hasValidLength) {
     if (Number.isInteger(value)) {
       // console.log(`${value} целое число`);
       userData.strLength = value;
