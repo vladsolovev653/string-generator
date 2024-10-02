@@ -28,7 +28,7 @@ selectAll.addEventListener('click', () => {
 strLength.addEventListener('input', (event) => {
   let isValid = false;
 
-  const value = Number(event.target.value);
+  let value = Number(event.target.value);
 
   if (!value) {
     // console.log(`${value} НЕ является числом`);
@@ -37,38 +37,39 @@ strLength.addEventListener('input', (event) => {
     strLengthError.style.display = 'none';
     strLength.classList.remove('invalid');
     strLengthEmpty.textContent = `Значение от ${MIN_STR_LENGTH} до ${MAX_STR_LENGTH}`;
-  } else if (value < MIN_STR_LENGTH) {
-    // console.log(`${value} меньше ${MIN_STR_LENGTH}`);
-    strLengthEmpty.style.display = 'none';
-    strLengthError.style.display = 'inline';
-    strLength.classList.add('invalid');
-    strLengthError.textContent = `Минимальное значение: ${MIN_STR_LENGTH}`;
-  } else if (value > MAX_STR_LENGTH) {
-    // console.log(`${value} больше ${MAX_STR_LENGTH}`);
-    strLengthEmpty.style.display = 'none';
-    strLengthError.style.display = 'inline';
-    strLength.classList.add('invalid');
-    strLengthError.textContent = `Максимальное значение: ${MAX_STR_LENGTH}`;
   } else {
-    // console.log(`${value} валиден`);
-    isValid = true;
-    strLengthEmpty.style.display = 'none';
-    strLengthError.style.display = 'none';
-    strLength.classList.remove('invalid');
-  }
-
-  userData.hasValidLength = isValid;
-
-  if (userData.hasValidLength) {
-    if (Number.isInteger(value)) {
-      // console.log(`${value} целое число`);
-      userData.strLength = value;
-    } else {
+    // console.log(`${value} является числом`);
+    if (!Number.isInteger(value)) {
       // console.log(`${value} НЕ целое число`);
-      userData.strLength = Math.round(value);
-      event.target.value = userData.strLength;
+      event.target.value = Math.round(value);
+      value = event.target.value;
     }
-  }
+
+    if (value < MIN_STR_LENGTH) {
+      // console.log(`${value} меньше ${MIN_STR_LENGTH}`);
+      strLengthEmpty.style.display = 'none';
+      strLengthError.style.display = 'inline';
+      strLength.classList.add('invalid');
+      strLengthError.textContent = `Минимальное значение: ${MIN_STR_LENGTH}`;
+    } else if (value > MAX_STR_LENGTH) {
+      // console.log(`${value} больше ${MAX_STR_LENGTH}`);
+      strLengthEmpty.style.display = 'none';
+      strLengthError.style.display = 'inline';
+      strLength.classList.add('invalid');
+      strLengthError.textContent = `Максимальное значение: ${MAX_STR_LENGTH}`;
+    } else {
+      // console.log(`${value} валиден`);
+      isValid = true;
+      strLengthEmpty.style.display = 'none';
+      strLengthError.style.display = 'none';
+      strLength.classList.remove('invalid');
+    }
+  } 
+  
+  userData.hasValidLength = isValid;
+  userData.strLength = value;
+
+  // console.log(userData);
 });
 
 
@@ -104,7 +105,7 @@ generateBtn.addEventListener('click', (event) => {
 
   let resultStr = '';
 
-  if (!userData.hasChar || !userData.strLength) {
+  if (!userData.hasChar || !userData.hasValidLength) {
     resultStr = 'Что-то пошло не так';
   } else {
     // Генерация строки

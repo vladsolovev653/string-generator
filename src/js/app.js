@@ -6,7 +6,7 @@ const createWindow = () => {
     width: 560,
     height: 320,
     icon: path.join(__dirname, '..', '..', 'icon.ico'),
-    resizable: false
+    // resizable: false
   });
 
   win.setMenuBarVisibility(false);
