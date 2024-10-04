@@ -1,7 +1,10 @@
 // Константы
-const MIN_STR_LENGTH = 5;
+
+// Граничные значения
+const MIN_STR_LENGTH = 10;
 const MAX_STR_LENGTH = 5000;
 
+// Данные для генерации
 const CHARS = { 
   'cyrrilic': 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя', 
   'latin': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
