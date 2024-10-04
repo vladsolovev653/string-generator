@@ -3,6 +3,13 @@
 // Форма
 const form = document.getElementById('generate-form');
 
+// Блок с радио
+const dataTypes = document.getElementById('data-types');
+
+// Радио
+const stringType = document.getElementById('string-type');
+const textType = document.getElementById('text-type');
+
 // Чекбоксы
 const selectAll = document.getElementById('select-all');
 const cyrillic = document.getElementById('cyrillic');
@@ -30,6 +37,7 @@ const refreshBtn = document.getElementById('reload-button');
 
 // Данные пользователя
 const userData = {
+  dataType: 'string',
   hasChar: false,
   hasValidLength: false,
   strLength: 0
