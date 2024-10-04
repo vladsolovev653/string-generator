@@ -193,8 +193,8 @@ generateBtn.addEventListener('click', (event) => {
 
       if (userData.strLength > text.length) {
         do {
-          text += text
-        } while (userData.strLength <= text.length)
+          text += text;
+        } while (userData.strLength > text.length)
       }
 
       text = text.slice(0, userData.strLength);
